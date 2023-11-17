@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva para o Natal</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'Text';
+            src: url(Miraculous&Christmas.ttf);
+        }
+
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: #940c0c;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+            color: white;
+        }
+
+        h1 {
+            font-family: 'Text';
+            font-size: 80px;
+            margin-top: -30px;
+        }
+
+        #countdown {
+            font-size: 2em;
+            font-weight: bold;
+            color: #ff0000;
+            margin-bottom: 20px;
+            margin-top: -50px;
+        }
+
+        .natal {
+            position: absolute;
+            top: -100%;
+            width: 100%;
+            height: 95px;
+        }
+
+        .arvore {
+            position: absolute;
+            top: -100%;
+            width: 100%;
+            height: 415px;
+            left: -100%;
+            text-align: center;
+        }
+
+        .arvore img {
+            width: 450px;
+        }
+
+        .rena {
+            position: absolute;
+            top: 300%;
+            width: 180px;
+            height: 100px;
+            left: 300%;
+            background: url(uT5iksY.png) no-repeat;
+        }
+
+        .chapeu {
+            width: 100px;
+            display: flex;
+            margin-left: 760px;
+        }
+
+        .chapeu2 {
+            margin-top: 60px;
+        }
+
+        .feliz-natal {
+            font-family: 'Text';
+            font-size: 80px;
+            color: #ffcc00;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="chapeu2">
+        <img class="chapeu" src="chapeu.png" alt="">
+    </div>
+    <h1>Natal</h1>
+    <p id="countdown"></p>
+
+    <span class="arvore"><img src="eifeNdf.png"></span>
+
+    <script>
+        // Definindo a data do Natal
+        const natalDate = new Date('December 25, 2023 00:00:00 GMT-03:00');
+
+        function updateCountdown() {
+            const currentDate = new Date();
+            const timeDifference = natalDate - currentDate;
+
+            // Se o tempo chegou a zero, mostra a mensagem de Feliz Natal
+            if (timeDifference <= 0) {
+                document.getElementById('countdown').style.display = 'none';
+                document.getElementById('feliz-natal').style.display = 'block';
+            } else {
+                // Calculando dias, horas, minutos e segundos restantes
+                const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+                // Atualizando o elemento de contagem regressiva
+                document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+        }
+
+        // Atualizando a contagem regressiva a cada segundo
+        setInterval(updateCountdown, 1000);
+
+        // Atualizando a contagem regressiva inicialmente
+        updateCountdown();
+
+        $(function () {
+            $(".arvore").fadeIn(3000, function () {
+                $(this).animate({ 'top': '+=200%', 'marginTop': '-=415px' }, 3000);
+                $(this).animate({ 'left': '+=100%' }, 3000);
+            });
+        });
+    </script>
+
+    <!-- Mensagem de Feliz Natal -->
+    <div id="feliz-natal" class="feliz-natal" style="display: none;">Feliz Natal!</div>
+
+</body>
+
+</html>
